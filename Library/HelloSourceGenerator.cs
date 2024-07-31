@@ -27,7 +27,7 @@ namespace {mainMethod.ContainingNamespace.ToDisplayString()}
         static partial void HelloFrom(string name) =>
             Console.WriteLine($""Generator says: Hi from '{{name}}'"");
         static partial void BuildAt() =>
-            Console.WriteLine($""Built at: {DateTimeOffset.UtcNow}"");
+            Console.WriteLine($""Built at: {TimeProvider.System.GetUtcNow()}. with TimeProvider"");
     }}
 }}
 ";
@@ -36,6 +36,7 @@ namespace {mainMethod.ContainingNamespace.ToDisplayString()}
             // Add the source code to the compilation
             context.AddSource($"{typeName}.g.cs", source);
         }
+
 
         public void Initialize(GeneratorInitializationContext context)
         {
